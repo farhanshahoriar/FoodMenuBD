@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.FoodItemViewHolder> {
 
-    public FoodList.FoodItemData[] foodItemData = null;
+    public FoodItemData[] foodItemData = null;
     @Override
     public void onBindViewHolder(@NonNull FoodItemViewHolder foodItemViewHolder, int pos) {
         String strData= foodItemData[pos].foodName+" "+foodItemData[pos].resName;
@@ -38,7 +38,7 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.FoodIt
         return new FoodItemViewHolder(view);
     }
 
-    public void setData(FoodList.FoodItemData[] data){
+    public void setData(FoodItemData[] data){
         foodItemData = data;
         notifyDataSetChanged();
     }

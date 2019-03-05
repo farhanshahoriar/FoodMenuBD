@@ -2,15 +2,16 @@ package com.farhanshahoriar.foodmenubd;
 
 public class FoodItemData {
     public String foodName,foodtype,resName;
-    public int foodID;
+    public int foodID,price;
 
-    void setValues(String fname, int id, String rest) {
+    void setValues(String fname, int id, String rest, int price) {
         foodName = fname;
-        foodID =id;
+        foodID = id;
         resName = rest;
+        this.price = price;
     }
 
-    public void SetDatadata(String str) {
+    public void setDatadata(String str) {
         int s=0,ln=str.length(),dcnt=0;
         String dParts[] =new String [5];
 
@@ -23,7 +24,7 @@ public class FoodItemData {
             }
         }
 
-        setValues(dParts[0],Integer.parseInt(dParts[1]), dParts[2]);
+        setValues(dParts[0],Integer.parseInt(dParts[1]), dParts[2],Integer.parseInt(dParts[3]));
     }
 
     void printData() {

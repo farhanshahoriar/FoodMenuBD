@@ -12,7 +12,7 @@ public class FoodMenuAdapter extends RecyclerView.Adapter<FoodMenuAdapter.FoodIt
     public FoodItemData[] foodItemData = null;
     @Override
     public void onBindViewHolder(@NonNull FoodItemViewHolder foodItemViewHolder, int pos) {
-        String strData= foodItemData[pos].foodName+" "+foodItemData[pos].resName;
+        String strData= foodItemData[pos].foodName+" \t"+foodItemData[pos].resName+" \t"+foodItemData[pos].price;
         foodItemViewHolder.menuItemTextView.setText(strData);
     }
 

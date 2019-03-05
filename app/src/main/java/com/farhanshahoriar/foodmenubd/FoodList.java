@@ -1,12 +1,20 @@
 package com.farhanshahoriar.foodmenubd;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FoodList extends AppCompatActivity {
 
@@ -17,7 +25,7 @@ public class FoodList extends AppCompatActivity {
     private FoodMenuAdapter foodAdapter;
 
     final int dataSize=5;
-    public FoodItemData[] foodItemData;
+    //public FoodItemData[] foodItemData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +48,45 @@ public class FoodList extends AppCompatActivity {
         foodAdapter = new FoodMenuAdapter();
         fRecyclerView.setAdapter(foodAdapter);
 
-        foodItemData = new FoodItemData[dataSize];
+        AssetManager assetManager = getAssets();
+       // String [] files = assetManager.list("");
+        //File dataFile = new
+        InputStream inputfs = null;
+        //System.out.println("OK");
 
-        for(int i=0;i<foodItemData.length;i++){
-            foodItemData[i] = new FoodItemData();
+        try {
+            inputfs = assetManager.open("fooddata.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        foodItemData[0].setValues("Burger",12,"Mughol");
-        foodItemData[1].setValues("Fried Rice",8,"Order's Up");
-        foodItemData[2].setValues("Chiken Fry",19,"Axyz");
-        foodAdapter.setData(foodItemData);
+
+        Scanner fsc = new Scanner(inputfs);
+
+        ArrayList<FoodItemData> foodItemList = new ArrayList<>();
+        String inputstr;
+        int in=0;
+        while (fsc.hasNext()){
+            inputstr = fsc.nextLine();
+
+            if(inputstr.toLowerCase().contains(key.toLowerCase())) {
+                //keyText.append(inputstr+"\n");
+                FoodItemData foodItemData = new FoodItemData();
+                foodItemData.setDatadata(inputstr);
+
+                foodItemList.add(foodItemData);
+            }
+        }
+
+//        foodItemData[0].setValues("Burger",12,"Mughol");
+//        foodItemData[1].setValues("Fried Rice",8,"Order's Up");
+//        foodItemData[2].setValues("Chiken Fry",19,"Axyz");
+
+        keyText.append("\n\nFood Name  Resturent  Price\n");
+
+        FoodItemData[] foodArray = null;
+                foodArray= foodItemList.toArray(new FoodItemData[foodItemList.size()]);
+        //keyText.setText("size"+foodItemList.size());
+        foodAdapter.setData(foodArray);
     }
 
 }

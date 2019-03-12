@@ -1,6 +1,6 @@
 package com.farhanshahoriar.foodmenubd;
 
-public class FoodItemData {
+public class FoodItemData implements Comparable{
     public String foodName,foodtype,resName;
     public int foodID,price;
 
@@ -13,7 +13,7 @@ public class FoodItemData {
 
     public void setDatadata(String str) {
         int s=0,ln=str.length(),dcnt=0;
-        String dParts[] =new String [5];
+        String dParts[] =new String [6];
 
         for(int i=0;i<ln;i++) {
             if(str.charAt(i)==',') {
@@ -29,5 +29,10 @@ public class FoodItemData {
 
     void printData() {
         System.out.println(foodName+" "+foodID+" "+resName);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return price-((FoodItemData)o).price;
     }
 }

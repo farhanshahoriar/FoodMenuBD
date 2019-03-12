@@ -12,16 +12,32 @@
         android:layout_height="wrap_content"
         android:text="Enter food name or resturant name:"
         android:textSize="20sp"
-        />
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
     <EditText
         android:id="@+id/search_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
         android:onClick="onSearchFood"
-        />
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:text="Find menu of Resturant:" />
+    <ListView
+        android:id="@+id/returant_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
 
 </LinearLayout>

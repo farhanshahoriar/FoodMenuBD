@@ -13,7 +13,9 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FoodList extends AppCompatActivity {
@@ -86,6 +88,8 @@ public class FoodList extends AppCompatActivity {
         FoodItemData[] foodArray = null;
                 foodArray= foodItemList.toArray(new FoodItemData[foodItemList.size()]);
         //keyText.setText("size"+foodItemList.size());
+        Arrays.sort(foodArray);
+
         foodAdapter.setData(foodArray);
     }
 
